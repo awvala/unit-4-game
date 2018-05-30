@@ -3,5 +3,78 @@ body, html {
     font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
     line-height: 1;
     position: relative;
+    color: white;
+    background-image: url("../images/starwarsbg.jpg");
+}
+
+#wrapper {
+    padding-left: 10px;
+}
+
+h1 {
+    text-align: right; 
+    padding: 10px 200px 10px 0px;
+    font-size: 22px;
+}
+
+h2 {
+    margin: 10px 0px 10px 0px;
+}
+
+p {
+    font-size: 12px;
+}
+
+.selectCharacter {
+    display: inline-block;
+    background-color: white;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid red;
+    text-align: center;
     color: black;
+}
+
+.selectCharacter {
+    display: inline-block;
+    background-color: white;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid red;
+    text-align: center;
+    color: black;
+}
+
+.yourChar {
+    display: none;
+    background-color: white;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid red;
+    text-align: center;
+    color: black;
+}
+
+#enemyChar1, #enemyChar2, #enemyChar3 {
+    display: none;
+    background-color: red;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid black;
+    text-align: center;
+    color: white;
+}
+
+#defenderChar {
+    display: none;
+    background-color: black;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid red;
+    text-align: center;
+    color: white;
+    margin-bottom: 10px;
+}
+
+#resultButton {
+    display: none;
+}
+
+audio {
+    margin-top: 20px;
 }
