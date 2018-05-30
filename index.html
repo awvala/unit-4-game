@@ -14,11 +14,48 @@
         <header>
             <h1 id="pageTitle">Star Wars RPG</h1>
         </header>
+        <!--  Select character section-->
         <section id="selectCharacter">
+            <p id="instructions">Select Your Champion</p>
             <img class="selectCharImg" src="assets/images/jedirei.jpg" alt="Jedi Rei">
             <img class="selectCharImg" src="assets/images/lukeskywalker.jpg" alt="Jedi Luke Skywalker">
-            <img class="selectCharImg" src="assets/images/asajj.jpg" alt="sith Asajj-Ventress">
+            <img class="selectCharImg" src="assets/images/asajj.jpg" alt="Sith Asajj-Ventress">
             <img class="selectCharImg" src="assets/images/darthmaul.jpg" alt="Sith Darth Maul">
+        </section>
+        <!--  Player character section-->
+        <section id="yourCharacter">
+            <h2>Your Character</h2>
+            <img class="yourCharacterImg" id="" src="" alt="">
+        </section>
+        <!--  Remaining enemy character section-->
+        <section id="enemiesAvailable">
+            <h2>Enemies Available to Attack</h2>
+            <img class="enemyImg" id="enemy1" src="" alt="">
+            <img class="enemyImg" id="enemy2" src="" alt="">
+            <img class="enemyImg" id="enemy3" src="" alt="">
+        </section>
+        <!--  Current enemy section-->
+        <section id="attackSection">
+            <h2>Use the Force!</h2>
+            <button type="button">Attack</button>
+        </section>
+        <section id="defender">
+            <h2>Defender</h2>
+            <img class="DefenderImg" src="" alt="">
+            <p id="characterAttackMsg"></p>
+            <p id="enemyAttackMsg"></p>
+            <p id="gametMsg"></p>
+            <button type="button" id="resultButton">Restart</button>  
+        </section>
+        <section id="audioSection">
+            <audio id="backgroundmusic" controls loop preload="auto">
+                <source src="assets/sounds/Star-Wars-Duel-of-the-Fates.mp3" type="audio/mpeg">
+                <source src="" type="audio/og">
+                Sorry! Your browser does not support audio.
+            </audio>
+            <audio class="hiddenAudio" id="gameAudio">
+                    <source src="">
+                </audio>
         </section>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
