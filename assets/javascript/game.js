@@ -2,19 +2,17 @@
 var game = {
 
 // global variables within game object
-selectedCharacterKey: "",
 characterSelected: false,
 defenderSelected: false,
 enemiesDefeated: 0,
-resetToggle: false,
 
 // Playable character objects
   Rei: {
     Name: "Rei",
     key: "Rei",
     HP: 120,
-    AP: 8,
-    CAP: 8, 
+    AP: 10,
+    CAP: 10, 
     allignment: "Jedi: ",
     imgSrc: "assets/images/jedirei.jpg",
 },
@@ -23,8 +21,8 @@ resetToggle: false,
     Name: "Luke Skywalker",
     key: "Luke",
     HP: 100,
-    AP: 5,
-    CAP: 5, 
+    AP: 8,
+    CAP: 8, 
     allignment: "Jedi: ",
     imgSrc: "assets/images/lukeskywalker.jpg",
 },
@@ -52,7 +50,6 @@ resetToggle: false,
 },
 
 selectedPlayer: {},
-
 selectedDefender: {},
 
 createYourCharacter: function (playerCharacter) {
@@ -124,18 +121,42 @@ createDefender: function (enemyCharacter) {
     $(selectedEnemy).css("display", "none");
 },
 
+reset: function () {
+    //clear global variables and objects
+    this.characterSelected = false;
+    this.defenderSelected = false;
+    this.enemiesDefeated = 0;
+    this.selectedPlayer= {};
+    this.selectedDefender= {};
+    this.characterSelected = false;
+
+    //reset CSS
+    $("#yourCharacter").css("display", "none");
+    $(".yourChar").css("display", "none");
+    $("#enemiesAvailable").css("display", "none");
+    $(".enemyChar").css("display", "none");
+    $("#attackSection").css("display", "none");
+    $("#defenderContainer").css("display", "none");
+    $("#defenderChar").css("display", "none");
+    $("#resetButton ").css("display", "none");
+    $("#characterAttackMsg").css("display", "none").text("");
+    $("#enemyAttackMsg").css("display", "none").text("");
+
+    $("#selectInst").css("display", "block"); 
+    $(".selectCharacter").css("display", "inline-block");
+},
 
 }
 // End game object
 
 $(document).ready(function() {
 
-    //build nested object calls
+    /*build nested object calls
     function getDescendantProp (obj, desc) {
         var arr = desc.split('.');
         while (arr.length && (obj = obj[arr.shift()]));
         return obj;
-      };
+      };  Deprecated after moving to objects */
 
     // Select player character
     $(".selectCharacter").click(function(){
@@ -164,6 +185,9 @@ $(document).ready(function() {
         if (game.characterSelected === false) {
             //Create playerCharacter in game object
             game.createYourCharacter(playerCharacter); 
+            var bgMusic = document.getElementById('backgroundmusic');
+            bgMusic.play();
+            bgMusic.volume = 0.5;
             game.characterSelected = true; 
         }             
     });
@@ -205,30 +229,55 @@ $(document).ready(function() {
     //Attack button
     $("#attackButton").click(function() {
 
-        var playerAP = game.selectedPlayer.AP;
-        //var playerCAP = game.selectedPlayer.CAP;
-        //var oldenemyHP = game.selectedDefender.HP;
+        //Player Stats
+        var playerAP = game.selectedPlayer.AP; 
+        game.selectedPlayer.AP = playerAP + game.selectedPlayer.CAP;
+
+        //Enemy status
         var newenemyHP = game.selectedDefender.HP - game.selectedPlayer.AP;
-
+        game.selectedDefender.HP = newenemyHP;
         var enemyCAP = game.selectedDefender.CAP;
+
+        //Updated Stats
         var newplayerHP = game.selectedPlayer.HP - game.selectedDefender.CAP;
-
-        //calculate enemy hp
-        $("#defenderHP").text(newenemyHP);
-        //calculate new attack strength
-        game.selectedPlayer.AP = game.selectedPlayer.AP + game.selectedPlayer.CAP;
-
-        //calculate playerHP
         game.selectedPlayer.HP = newplayerHP;
+
+        //Update page
+        $("#defenderHP").text(newenemyHP);
         $("#yourHP").text(game.selectedPlayer.HP);
-        //evaluate player HP
-        //evaluate enemy hp
-        //update system messages
-        $("#characterAttackMsg").text("You attacked " + game.selectedDefender.Name + " for " + playerAP + " points of damage");
-        $("#enemyAttackMsg").text(game.selectedDefender.Name + " attacked you for " + game.selectedDefender.CAP + " points of damage");
+
+        //Evaluate winning conditions
+        if (newplayerHP < 1 ) {
+            //If player lost
+            $("#gameMsg").css("display", "block").text("You have been defeated...GAME OVER!");
+            $("#characterAttackMsg").css("display", "none").text("");
+            $("#enemyAttackMsg").css("display", "none").text("");
+            $("#resetButton").css("display", "block"); 
+        } else if (newenemyHP > 1 ) {  
+            //If both players are still above 0 HPs
+            $("#gameMsg").css("display", "none");
+            $("#characterAttackMsg").css("display", "block").text("You attacked " + game.selectedDefender.Name + " for " + playerAP + " points of damage");
+            $("#enemyAttackMsg").css("display", "block").text(game.selectedDefender.Name + " attacked you for " + game.selectedDefender.CAP + " points of damage");
+        } else if (newenemyHP < 1 ) {  
+            //If enemy is below 0 HPs
+            $("#characterAttackMsg").css("display", "none").text("");
+            $("#enemyAttackMsg").css("display", "none").text("");
+            game.enemiesDefeated++;
+                if (game.enemiesDefeated < 3) {
+                    //If the player has more enemies to fight
+                    $("#gameMsg").css("display", "block").text("You have defeated " + game.selectedDefender.Name + ", choose your next enemy!");
+                    game.defenderSelected = false;
+                } else {
+                    //If the player has defeated all enemies
+                    $("#gameMsg").css("display", "block").text("You Won!!!!  GAME OVER!!!");
+                    $("#resetButton").css("display", "block");
+                }
+        }
     });
 
-
-
-
+    // Reset Button
+    $("#resetButton").click(function() {
+        game.reset();
+    });
+    
 });

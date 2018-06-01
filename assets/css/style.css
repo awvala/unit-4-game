@@ -79,7 +79,8 @@ p {
     margin-bottom: 10px;
 }
 
-#resultButton {
+#resetButton {
+    margin-top: 20px;
     display: none;
 }
 
