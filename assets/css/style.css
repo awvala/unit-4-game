@@ -34,13 +34,8 @@ p {
     color: black;
 }
 
-.selectCharacter {
-    display: inline-block;
-    background-color: white;
-    padding: 5px 10px 5px 10px;
-    border: 1px solid red;
-    text-align: center;
-    color: black;
+#yourCharacter {
+    display: none;
 }
 
 .yourChar {
@@ -52,13 +47,26 @@ p {
     color: black;
 }
 
-#enemyChar1, #enemyChar2, #enemyChar3 {
+#enemiesAvailable {
+    display: none;
+}
+
+.enemyChar {
     display: none;
     background-color: red;
     padding: 5px 10px 5px 10px;
     border: 1px solid black;
     text-align: center;
     color: white;
+}
+
+#attackSection {
+    display: none;
+    margin-top: 30px;
+}
+
+#defenderContainer {
+    display: none;
 }
 
 #defenderChar {

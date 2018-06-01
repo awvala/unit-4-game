@@ -17,26 +17,26 @@
 
         <!--  Select character section-->
         <section id="selectCharactersection">
-            <h2>Select Your Champion</h2>
+            <h2 id="selectInst">Select Your Champion</h2>
             <div class="selectCharacter selectRei">
-                <p class="characterName">Jedi- Rei</p>
+                <p class="characterName">Jedi: Rei</p>
                 <img class="selectCharImg" src="assets/images/jedirei.jpg" alt="Jedi Rei">
-                <p class="reiHP">HP 120</p>
+                <p class="ReiHP">120</p>
             </div>
             <div class="selectCharacter selectLuke">
-                <p class="characterName">Jedi- Luke Skywalker</p>
+                <p class="characterName">Jedi: Luke Skywalker</p>
                 <img class="selectCharImg" src="assets/images/lukeskywalker.jpg" alt="Jedi Luke Skywalker">
-                <p class="lukeHP">HP 100</p>
+                <p class="LukeHP">100</p>
             </div>
             <div class="selectCharacter selectAsajj">
-                <p class="characterName">Sith- Asajj-Ventress</p>
+                <p class="characterName">Sith: Asajj-Ventress</p>
                 <img class="selectCharImg" src="assets/images/asajj.jpg" alt="Sith Asajj-Ventress">
-                <p class="asajjHP">HP 150</p>
+                <p class="AsajjHP">150</p>
             </div>
             <div class="selectCharacter selectMaul">
-                <p class="characterName">Sith- Darth Maul</p>
+                <p class="characterName">Sith: Darth Maul</p>
                 <img class="selectCharImg" src="assets/images/darthmaul.jpg" alt="Sith Darth Maul">
-                <p class="maulHP">HP 180</p>
+                <p class="MaulHP">180</p>
             </div>   
         </section>
 
@@ -45,48 +45,52 @@
             <h2>Your Character</h2>
             <div class="yourChar">
                 <p id="yourcharacterName"></p>
-                <img class="yourCharImg" src="" alt="">
+                <img id="yourCharImg" src="" alt="">
                 <p id="yourHP"></p>
             </div>
-            <img class="yourCharacterImg" id="" src="" alt="">
         </section>
 
         <!--  Remaining enemy character section-->
         <section id="enemiesAvailable">
             <h2>Enemies Available to Attack</h2>
-            <div id="enemyChar1">
-                <p class="enemyName1"></p>
-                <img class="enemyImg" id="enemy1" src="" alt="">
-                <p id="enemyHP1"></p>
+            <div class="enemyChar" id="enemyRei">
+                <p class="characterName">Jedi: Rei</p>
+                <img src="assets/images/jedirei.jpg" alt="Jedi Rei">
+                <p id="ReiHP"></p>
             </div>
-            <div id="enemyChar2">
-                <p class="enemyName2"></p>
-                <img class="enemyImg" id="enemy2" src="" alt="">
-                <p id="enemyHP2"></p>
+            <div class="enemyChar" id="enemyLuke">
+                <p class="characterName">Jedi: Luke Skywalker</p>
+                <img src="assets/images/lukeskywalker.jpg" alt="Jedi Luke Skywalker">
+                <p id="LukeHP"></p>
             </div>
-            <div id="enemyChar3">
-                <p class="enemyName3"></p>
-                <img class="enemyImg" id="enemy3" src="" alt="">
-                <p id="enemyHP3"></p>
+            <div class="enemyChar" id="enemyAsajj">
+                <p class="characterName">Sith: Asajj-Ventress</p>
+                <img src="assets/images/asajj.jpg" alt="Sith Asajj-Ventress">
+                <p id="AsajjHP"></p>
+            </div>
+            <div class="enemyChar" id="enemyMaul">
+                <p class="characterName">Sith: Darth Maul</p>
+                <img src="assets/images/darthmaul.jpg" alt="Sith Darth Maul">
+                <p id="MaulHP"></p>
             </div>
         </section>
 
         <section id="attackSection">
             <h2>Use the Force!</h2>
-            <button type="button">Attack</button>
+            <button type="button" id="attackButton">Attack</button>
         </section>
 
         <!--  Current enemy section-->
         <section id="defenderContainer">
             <h2>Defender</h2>
             <div id="defenderChar">
-                <p class="defenderName"></p>
-                <img class="defenderImg" src="" alt="">
+                <p id="defenderName"></p>
+                <img id="defenderImg" src="" alt="">
                 <p id="defenderHP"></p>
             </div>
             <p id="characterAttackMsg"></p>
             <p id="enemyAttackMsg"></p>
-            <p id="gametMsg"></p>
+            <p id="gameMsg"></p>
             <button type="button" id="resultButton">Restart</button>  
         </section>
 
