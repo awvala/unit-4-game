@@ -6,6 +6,9 @@ characterSelected: false,
 defenderSelected: false,
 enemiesDefeated: 0,
 
+fightarr: [/*"assets/sounds/blaster-firing.wav", */"assets/sounds/ltsaberswing01.wav", "assets/sounds/ltsaberswing01.wav", "assets/sounds/ltsaberswing02.wav", "assets/sounds/ltsaberswing03.wav", "assets/sounds/ltsaberswing04.wav", "assets/sounds/ltsaberswing05.wav", "assets/sounds/ltsaberswing06.wav", "assets/sounds/ltsaberswing07.wav"],
+losearr: ["assets/sounds/jabba-the-hutt-laughing.wav","assets/sounds/WilhelmScream.wav","assets/sounds/swluke01.wav", "assets/sounds/swvader01.wav"],
+
 // Playable character objects
   Rey: {
     Name: "Rey",
@@ -95,6 +98,10 @@ createYourCharacter: function (playerCharacter) {
         $("#enemyMaul").css("display", "inline-block");
         $("#MaulHP").text(game.Maul.HP);
     }
+
+    /*var startAudio = new Audio("assets/sounds/light-saber-on.wav");
+    startAudio.volume = 0.3;
+    startAudio.play();*/
 },
 
 createDefender: function (enemyCharacter) {
@@ -145,7 +152,26 @@ reset: function() {
 
     $("#selectInst").css("display", "block"); 
     $(".selectCharacter").css("display", "inline-block");
+
+    /*var endAudio = new Audio("assets/sounds/light-saber-off.wav");
+    endAudio.volume = 0.3;
+    endAudio.play();*/
 },
+
+battlesound: function() {
+    randFightSound = Math.floor(Math.random() * this.fightarr.length);
+    var fightAudio = new Audio(this.fightarr[randFightSound]);
+    fightAudio.volume = 0.3;
+    fightAudio.play();
+},
+
+losssound: function() {
+    randLossSound = Math.floor(Math.random() * this.losearr.length);
+    var lossAudio = new Audio(this.losearr[randLossSound]);
+    //lossAudio.volume = 0.3;
+    lossAudio.play();
+},
+
 }
 // End game object
 
@@ -239,6 +265,7 @@ $(document).ready(function() {
             game.selectedPlayer.AP = playerAP + game.selectedPlayer.APBase;
             var newenemyHP = currentEnemyHP - playerAP;
             game.selectedDefender.HP = newenemyHP;
+            game.battlesound();
 
             if (newenemyHP > 0) {
                 //If enemy's HP are still positive
@@ -254,6 +281,7 @@ $(document).ready(function() {
                     $("#characterAttackMsg").css("display", "none").text("");
                     $("#enemyAttackMsg").css("display", "none").text("");
                     $("#resetButton").css("display", "block"); 
+                    game.losssound();
                 } else if (newplayerHP > 0) {
                     //If PC still has pos. HPs
                     
