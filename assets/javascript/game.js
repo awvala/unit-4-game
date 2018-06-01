@@ -11,8 +11,8 @@ enemiesDefeated: 0,
     Name: "Rei",
     key: "Rei",
     HP: 120,
-    AP: 10,
-    CAP: 10, 
+    AP: 8,
+    CAP: 8, 
     allignment: "Jedi: ",
     imgSrc: "assets/images/jedirei.jpg",
 },
@@ -21,8 +21,8 @@ enemiesDefeated: 0,
     Name: "Luke Skywalker",
     key: "Luke",
     HP: 100,
-    AP: 8,
-    CAP: 8, 
+    AP: 5,
+    CAP: 5, 
     allignment: "Jedi: ",
     imgSrc: "assets/images/lukeskywalker.jpg",
 },
@@ -63,6 +63,7 @@ createYourCharacter: function (playerCharacter) {
     //console.log(this.selectedPlayer);
 
     //Update html with selectedPlayer object properties
+    $("#yourcharacterName").text(this.selectedPlayer.allignment + this.selectedPlayer.Name);
     $("#yourCharImg").attr( {src: this.selectedPlayer.imgSrc, alt: this.selectedPlayer.Name} );
     $("#yourHP").text("HP " + this.selectedPlayer.HP);
     $(".yourChar").css("display", "inline-block"); 
@@ -121,7 +122,7 @@ createDefender: function (enemyCharacter) {
     $(selectedEnemy).css("display", "none");
 },
 
-reset: function () {
+reset: function() {
     //clear global variables and objects
     this.characterSelected = false;
     this.defenderSelected = false;
@@ -229,22 +230,27 @@ $(document).ready(function() {
     //Attack button
     $("#attackButton").click(function() {
 
+        var currentEnemyHP = game.selectedDefender.HP;
+        var currentPlayerHP = game.selectedPlayer.HP;
+
+        if (currentEnemyHP > 0 && currentPlayerHP >0) {
+
         //Player Stats
         var playerAP = game.selectedPlayer.AP; 
         game.selectedPlayer.AP = playerAP + game.selectedPlayer.CAP;
 
         //Enemy status
-        var newenemyHP = game.selectedDefender.HP - game.selectedPlayer.AP;
+        var newenemyHP = currentEnemyHP - playerAP;
         game.selectedDefender.HP = newenemyHP;
         var enemyCAP = game.selectedDefender.CAP;
 
         //Updated Stats
-        var newplayerHP = game.selectedPlayer.HP - game.selectedDefender.CAP;
+        var newplayerHP = currentPlayerHP - enemyCAP;
         game.selectedPlayer.HP = newplayerHP;
 
         //Update page
         $("#defenderHP").text(newenemyHP);
-        $("#yourHP").text(game.selectedPlayer.HP);
+        $("#yourHP").text(newplayerHP);
 
         //Evaluate winning conditions
         if (newplayerHP < 1 ) {
@@ -262,6 +268,7 @@ $(document).ready(function() {
             //If enemy is below 0 HPs
             $("#characterAttackMsg").css("display", "none").text("");
             $("#enemyAttackMsg").css("display", "none").text("");
+            $("#defenderChar").css("display", "none");
             game.enemiesDefeated++;
                 if (game.enemiesDefeated < 3) {
                     //If the player has more enemies to fight
@@ -273,11 +280,17 @@ $(document).ready(function() {
                     $("#resetButton").css("display", "block");
                 }
         }
+    } else {
+        // if player character or defender character have HP < 1 display error message
+        $("#characterAttackMsg").css("display", "none").text("");
+        $("#enemyAttackMsg").css("display", "none").text("");
+        $("#gameMsg").css("display", "block").text("Don't beat a dead Tauntaun! Select a new foe!");
+    }
     });
 
     // Reset Button
     $("#resetButton").click(function() {
         game.reset();
     });
-    
+
 });
