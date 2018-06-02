@@ -6,7 +6,7 @@ characterSelected: false,
 defenderSelected: false,
 enemiesDefeated: 0,
 
-fightarr: [/*"assets/sounds/blaster-firing.wav", */"assets/sounds/ltsaberswing01.wav", "assets/sounds/ltsaberswing01.wav", "assets/sounds/ltsaberswing02.wav", "assets/sounds/ltsaberswing03.wav", "assets/sounds/ltsaberswing04.wav", "assets/sounds/ltsaberswing05.wav", "assets/sounds/ltsaberswing06.wav", "assets/sounds/ltsaberswing07.wav"],
+fightarr: ["assets/sounds/ltsaberswing01.wav", "assets/sounds/ltsaberswing01.wav", "assets/sounds/ltsaberswing02.wav", "assets/sounds/ltsaberswing03.wav", "assets/sounds/ltsaberswing04.wav", "assets/sounds/ltsaberswing05.wav", "assets/sounds/ltsaberswing06.wav", "assets/sounds/ltsaberswing07.wav"],
 losearr: ["assets/sounds/jabba-the-hutt-laughing.wav","assets/sounds/WilhelmScream.wav","assets/sounds/swluke01.wav", "assets/sounds/swvader01.wav"],
 
 // Playable character objects
@@ -24,8 +24,8 @@ losearr: ["assets/sounds/jabba-the-hutt-laughing.wav","assets/sounds/WilhelmScre
     Name: "Luke Skywalker",
     key: "Luke",
     HP: 100,
-    AP: 11,
-    CAP: 7, 
+    AP: 5,
+    CAP: 5, 
     allignment: "Jedi: ",
     imgSrc: "assets/images/lukeskywalker.jpg",
 },
@@ -33,8 +33,8 @@ losearr: ["assets/sounds/jabba-the-hutt-laughing.wav","assets/sounds/WilhelmScre
  Asajj: {
     Name: "Asajj-Ventress",
     key: "Asajj",
-    HP: 130,
-    AP: 13,
+    HP: 150,
+    AP: 20,
     CAP: 20, 
     allignment: "Sith: ",
     imgSrc: "assets/images/asajj.jpg",
@@ -45,7 +45,7 @@ losearr: ["assets/sounds/jabba-the-hutt-laughing.wav","assets/sounds/WilhelmScre
     Name: "Darth Maul",
     key: "Maul",
     HP: 180,
-    AP: 15,
+    AP: 25,
     CAP: 25, 
     allignment: "Sith: ",
     imgSrc: "assets/images/darthmaul.jpg",
@@ -63,7 +63,6 @@ createYourCharacter: function (playerCharacter) {
     this.selectedPlayer.APBase = playerCharacter.AP;
     this.selectedPlayer.allignment = playerCharacter.allignment;
     this.selectedPlayer.imgSrc = playerCharacter.imgSrc;
-    //console.log(this.selectedPlayer);
 
     //Update html with selectedPlayer object properties
     $("#yourcharacterName").text(this.selectedPlayer.allignment + this.selectedPlayer.Name);
@@ -111,7 +110,6 @@ createDefender: function (enemyCharacter) {
     this.selectedDefender.CAP = enemyCharacter.CAP;
     this.selectedDefender.allignment = enemyCharacter.allignment;
     this.selectedDefender.imgSrc = enemyCharacter.imgSrc;
-    //console.log(this.selectedDefender);
 
     //Update html with selectedDefender object properties
     
